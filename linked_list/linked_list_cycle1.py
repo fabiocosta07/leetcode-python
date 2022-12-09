@@ -1,49 +1,38 @@
 import unittest
 from typing import Optional
 
-
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+from utils.leetcode_utils import build_input_list, ListNode
 
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        if head == None:
+        if head is None:
             return False
-        pathMap = {}
-        nextNode = head
-        while nextNode.next != None:
-            if nextNode in pathMap:
+        path_map = {}
+        next_node = head
+        while next_node.next is not None:
+            if next_node in path_map:
                 return True
-            pathMap[nextNode] = True
-            nextNode = nextNode.next
+            path_map[next_node] = True
+            next_node = next_node.next
         return False
-
-
 
 
 class TestStringMethods(unittest.TestCase):
 
     def test_case1(self):
         sol = Solution()
-        res = sol.isValid("()")
+        res = sol.hasCycle(build_input_list([3, 2, 0, -4], 1))
         self.assertTrue(res)
 
     def test_case2(self):
         sol = Solution()
-        res = sol.isValid("()[]{}")
+        res = sol.hasCycle(build_input_list([1, 2], 0))
         self.assertTrue(res)
 
     def test_case3(self):
         sol = Solution()
-        res = sol.isValid("(]")
-        self.assertFalse(res)
-
-    def test_case4(self):
-        sol = Solution()
-        res = sol.isValid("]")
+        res = sol.hasCycle(build_input_list([1], -1))
         self.assertFalse(res)
 
 
