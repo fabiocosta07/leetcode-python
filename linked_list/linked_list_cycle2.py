@@ -1,7 +1,7 @@
 import unittest
 from typing import Optional
 
-from utils.leetcode_utils import build_input_list, ListNode
+from utils.leetcode_utils import build_input_list, ListNode, get_linked_list_cycle_node
 
 
 class Solution:
@@ -19,7 +19,7 @@ class Solution:
 
     def detectCycle_sol2(self, head: Optional[ListNode]) -> bool:
         if not head:
-            return False
+            return None
         next_node_slow = head
         next_node_fast = head
         while next_node_slow \
@@ -29,37 +29,58 @@ class Solution:
             next_node_fast = next_node_fast.next.next
             if next_node_fast is next_node_slow:
                 return next_node_fast
+
+
 class TestStringMethods(unittest.TestCase):
 
     def test_case1(self):
+        pos = 1
+        input_list = build_input_list([3, 2, 0, -4], pos)
         sol = Solution()
-        res = sol.detectCycle(build_input_list([3, 2, 0, -4], 1))
-        self.assertTrue(res)
+        res = sol.detectCycle(input_list)
+        expected = get_linked_list_cycle_node(input_list, pos)
+        self.assertEqual(res, expected)
 
     def test_case2(self):
+        pos = 0
+        input_list = build_input_list([1, 2], pos)
         sol = Solution()
-        res = sol.detectCycle(build_input_list([1, 2], 0))
-        self.assertTrue(res)
+        res = sol.detectCycle(input_list)
+        expected = get_linked_list_cycle_node(input_list, pos)
+        self.assertEqual(expected, res)
 
     def test_case3(self):
+        pos = -1
+        input_list = build_input_list([1], pos)
         sol = Solution()
-        res = sol.detectCycle(build_input_list([1], -1))
-        self.assertFalse(res)
+        res = sol.detectCycle(input_list)
+        expected = get_linked_list_cycle_node(input_list, pos)
+        self.assertEqual(expected, res)
 
     def test_case1_sol2(self):
+        pos = 1
+        input_list = build_input_list([3, 2, 0, -4], pos)
         sol = Solution()
-        res = sol.detectCycle_sol2(build_input_list([3, 2, 0, -4], 1))
-        self.assertTrue(res)
+        res = sol.detectCycle(input_list)
+        expected = get_linked_list_cycle_node(input_list, pos)
+        self.assertEqual(res, expected)
+
 
     def test_case2_sol2(self):
+        pos = 0
+        input_list = build_input_list([1, 2], pos)
         sol = Solution()
-        res = sol.detectCycle_sol2(build_input_list([1, 2], 0))
-        self.assertTrue(res)
+        res = sol.detectCycle(input_list)
+        expected = get_linked_list_cycle_node(input_list, pos)
+        self.assertEqual(expected, res)
 
     def test_case3_sol2(self):
+        pos = -1
+        input_list = build_input_list([1], pos)
         sol = Solution()
-        res = sol.detectCycle_sol2(build_input_list([1], -1))
-        self.assertFalse(res)
+        res = sol.detectCycle(input_list)
+        expected = get_linked_list_cycle_node(input_list, pos)
+        self.assertEqual(expected, res)
 
 
 if __name__ == '__main__':
