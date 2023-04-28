@@ -47,3 +47,20 @@ def get_linked_list_cycle_node(head: Optional[ListNode], pos: int) -> Optional[L
         next_node = next_node.next
         i += 1
     return head
+
+def compare_linked_list(head1, head2):
+    arr1 = []
+    arr2 = []
+    while head1.next:
+        arr1.append(head1.data)
+        head1 = head1.next
+    while head2.next:
+        arr2.append(head2.data)
+        head2 = head2.next
+
+    if len(arr1) != len(arr2):
+        return False
+    for i in range(len(arr1)):
+        if arr1[i] != arr2[i]:
+            return False
+    return True
