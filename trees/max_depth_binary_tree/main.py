@@ -1,6 +1,6 @@
 import unittest
 from typing import Optional
-from trees.tree import TreeNode
+from trees.max_depth_binary_tree.tree import TreeNode
 
 
 class Solution:
